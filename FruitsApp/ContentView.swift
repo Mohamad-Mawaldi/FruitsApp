@@ -8,17 +8,25 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var 
+    @State var fruitsList = ["Apelsin", "Banan", "Citron"]
     
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        
+        NavigationStack {
+            VStack {
+                List( fruitsList, id: \.self ){ fruit in
+                    NavigationLink( destination: FruitDetailsView(fruitName: fruit) ) {
+                        FruitRowView( fruitName: fruit )
+                            .background(Color.yellow)
+
+                    }
+                }
+            }
         }
         .padding()
+
     }
+    
 }
 
 #Preview {
